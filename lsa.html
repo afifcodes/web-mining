@@ -1,0 +1,3033 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Data Crawling &#8212; My sample book</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Data Crawling" href="kmeans.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">My sample book</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="kmeans.html">
+   Data Crawling
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Data Crawling
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/lsa.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Flsa.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/lsa.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Data Crawling
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#imports">
+   Imports
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#global-vars">
+   Global Vars
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cleaning-tokenizing">
+   Cleaning &amp; Tokenizing
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#punctuation-table">
+     Punctuation Table
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#stopwords">
+   Stopwords
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#stopwords-dictionary">
+     Stopwords Dictionary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#stemming">
+   Stemming
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#stemming-dictionary">
+     Stemming Dictionary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#frequency-distribution">
+   Frequency Distribution
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#text-frequency-table">
+     Text Frequency Table
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#term-frequency">
+   Term Frequency
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#document-frequency">
+   Document Frequency
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#inverse-document-frequency">
+   Inverse Document Frequency
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#term-frequency-invers-document-frequency">
+   Term Frequency Invers Document Frequency
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#latent-semantic-analysis-lsa">
+   Latent Semantic Analysis (LSA)
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Data Crawling</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Data Crawling
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#imports">
+   Imports
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#global-vars">
+   Global Vars
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cleaning-tokenizing">
+   Cleaning &amp; Tokenizing
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#punctuation-table">
+     Punctuation Table
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#stopwords">
+   Stopwords
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#stopwords-dictionary">
+     Stopwords Dictionary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#stemming">
+   Stemming
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#stemming-dictionary">
+     Stemming Dictionary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#frequency-distribution">
+   Frequency Distribution
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#text-frequency-table">
+     Text Frequency Table
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#term-frequency">
+   Term Frequency
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#document-frequency">
+   Document Frequency
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#inverse-document-frequency">
+   Inverse Document Frequency
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#term-frequency-invers-document-frequency">
+   Term Frequency Invers Document Frequency
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#latent-semantic-analysis-lsa">
+   Latent Semantic Analysis (LSA)
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="data-crawling">
+<h1>Data Crawling<a class="headerlink" href="#data-crawling" title="Permalink to this headline">#</a></h1>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scrapy</span>
+
+<span class="k">class</span> <span class="nc">BlogSpider</span><span class="p">(</span><span class="n">scrapy</span><span class="o">.</span><span class="n">Spider</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;blog&#39;</span>
+    <span class="n">allowed_domains</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;pta.trunojoyo.ac.id&#39;</span><span class="p">]</span>
+    <span class="n">start_urls</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;https://pta.trunojoyo.ac.id/c_search/byprod/10&#39;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;include_headers_line&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">url</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">css</span><span class="p">(</span><span class="s1">&#39;a.gray.button&#39;</span><span class="p">):</span>
+            <span class="k">yield</span> <span class="n">response</span><span class="o">.</span><span class="n">follow</span><span class="p">(</span><span class="n">url</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;href&#39;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">parse_item</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">count</span> <span class="o">&lt;</span> <span class="mi">12</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">yield</span> <span class="n">response</span><span class="o">.</span><span class="n">follow</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s2">&quot;//*[@class=&#39;pag_button&#39; and contains(text(), &#39;&gt;&#39;)]&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;href&#39;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">parse</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">parse_item</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
+        <span class="k">yield</span> <span class="p">{</span>
+            <span class="s2">&quot;judul&quot;</span><span class="p">:</span> <span class="n">response</span><span class="o">.</span><span class="n">css</span><span class="p">(</span><span class="s1">&#39;a.title::text&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(),</span>
+            <span class="s2">&quot;penulis&quot;</span><span class="p">:</span> <span class="n">response</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s1">&#39;//*[@id=&quot;content_journal&quot;]/ul/li/div[2]/div[1]/span/text()&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">()[</span><span class="mi">10</span><span class="p">:],</span>
+            <span class="s2">&quot;dospem1&quot;</span><span class="p">:</span> <span class="n">response</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s1">&#39;//*[@id=&quot;content_journal&quot;]/ul/li/div[2]/div[2]/span/text()&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">()[</span><span class="mi">21</span><span class="p">:],</span>
+            <span class="s2">&quot;dospem2&quot;</span><span class="p">:</span> <span class="n">response</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s1">&#39;//*[@id=&quot;content_journal&quot;]/ul/li/div[2]/div[3]/span/text()&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">()[</span><span class="mi">21</span><span class="p">:],</span>
+            <span class="s2">&quot;abstrak&quot;</span><span class="p">:</span> <span class="n">response</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s1">&#39;//*[@id=&quot;content_journal&quot;]/ul/li/div[4]/div[2]/p/text()&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(),</span>
+        <span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="imports">
+<h1>Imports<a class="headerlink" href="#imports" title="Permalink to this headline">#</a></h1>
+<p>Pertama-tama kita membutuhkan library yang akan dipakai untuk pemrosesan ini, diantaranya adalah:</p>
+<ul class="contains-task-list simple">
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> numpy</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> regex</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> pandas</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> nltk</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> sklearn</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> sastrawi</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">regex</span> <span class="k">as</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">nltk</span>
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">TruncatedSVD</span>
+<span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">TfidfVectorizer</span><span class="p">,</span> <span class="n">CountVectorizer</span>
+<span class="kn">from</span> <span class="nn">Sastrawi.Stemmer.StemmerFactory</span> <span class="kn">import</span> <span class="n">StemmerFactory</span>
+<span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="kn">import</span> <span class="n">stopwords</span>
+<span class="kn">from</span> <span class="nn">nltk.probability</span> <span class="kn">import</span> <span class="n">FreqDist</span>
+<span class="kn">from</span> <span class="nn">nltk.tokenize</span> <span class="kn">import</span> <span class="n">word_tokenize</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;stopwords&#39;</span><span class="p">)</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;punkt&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[nltk_data] Downloading package stopwords to /home/zaka/nltk_data...
+[nltk_data]   Package stopwords is already up-to-date!
+[nltk_data] Downloading package punkt to /home/zaka/nltk_data...
+[nltk_data]   Package punkt is already up-to-date!
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="global-vars">
+<h1>Global Vars<a class="headerlink" href="#global-vars" title="Permalink to this headline">#</a></h1>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable</p></th>
+<th class="head"><p>Reference</p></th>
+<th class="head"><p>Library</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>factory</p></td>
+<td><p>StemmerFactory</p></td>
+<td><p>Sastrawi</p></td>
+</tr>
+<tr class="row-odd"><td><p>vectorizer</p></td>
+<td><p>CountVectorizer</p></td>
+<td><p>sklearn</p></td>
+</tr>
+<tr class="row-even"><td><p>tfidf</p></td>
+<td><p>TfidfVectorizer</p></td>
+<td><p>sklearn</p></td>
+</tr>
+<tr class="row-odd"><td><p>idf</p></td>
+<td><p>TfidfVectorizer</p></td>
+<td><p>sklearn</p></td>
+</tr>
+</tbody>
+</table>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">factory</span> <span class="o">=</span> <span class="n">StemmerFactory</span><span class="p">()</span>
+<span class="n">vectorizer</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">()</span>
+<span class="n">tfidf</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">()</span>
+<span class="n">idf</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">(</span><span class="n">use_idf</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">factory_dictionary</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="n">get_words</span><span class="p">()</span>
+<span class="n">stemmer</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="n">create_stemmer</span><span class="p">()</span>
+<span class="n">indo_stopwords</span> <span class="o">=</span> <span class="n">stopwords</span><span class="o">.</span><span class="n">words</span><span class="p">(</span><span class="s1">&#39;indonesian&#39;</span><span class="p">)</span>
+<span class="n">indo_stopwords</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">stopwords</span><span class="o">.</span><span class="n">words</span><span class="p">(</span><span class="s1">&#39;english&#39;</span><span class="p">))</span>
+<span class="n">docs</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data.csv&#39;</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;abstrak&#39;</span><span class="p">])</span>
+<span class="n">docs</span> <span class="o">=</span> <span class="n">docs</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;abstrak&#39;</span><span class="p">:</span> <span class="s1">&#39;raw&#39;</span><span class="p">})</span>
+<span class="n">docs</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>raw</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>ABSTRAK\nAkhir-akhir ini semakin maraknya penc...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Makanan dan minuman khas merupakan ciri dari k...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Penelitian ini bertujuan untuk dapat mengetahu...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Abstrak\n\n Rian Pandi Pranata. NIM 1605211000...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Perairan Soccah merupakan lokasi nelayan menca...</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>158</th>
+      <td>ABSTRAK\nANALISIS STRATEGI PEMASARAN DENGAN FI...</td>
+    </tr>
+    <tr>
+      <th>159</th>
+      <td>Berita merupakan pesan atau informasi hasil da...</td>
+    </tr>
+    <tr>
+      <th>160</th>
+      <td>Penelitian ini dilakukan untuk menjawab permas...</td>
+    </tr>
+    <tr>
+      <th>161</th>
+      <td>Tujuan dari penelitian ini adalah untuk menemu...</td>
+    </tr>
+    <tr>
+      <th>162</th>
+      <td>Seorang muslim yang faham tentang halal lifest...</td>
+    </tr>
+  </tbody>
+</table>
+<p>163 rows × 1 columns</p>
+</div></div></div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="cleaning-tokenizing">
+<h1>Cleaning &amp; Tokenizing<a class="headerlink" href="#cleaning-tokenizing" title="Permalink to this headline">#</a></h1>
+<p>Data yang sudah dicrawling akan dibersihkan dan akan di <em>tokenisasi</em>. data dibersihkan dengan membuang <em>punctuation</em>. kemudian <em>punctuation</em> tersebut akan diganti dengan spasi</p>
+<section id="punctuation-table">
+<h2>Punctuation Table<a class="headerlink" href="#punctuation-table" title="Permalink to this headline">#</a></h2>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Character</p></th>
+<th class="head"><p>Example</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Full Stop</p></td>
+<td><p>.</p></td>
+<td><p>.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Comma</p></td>
+<td><p>,</p></td>
+<td><p>,</p></td>
+</tr>
+<tr class="row-even"><td><p>Question Mark</p></td>
+<td><p>?</p></td>
+<td><p>?</p></td>
+</tr>
+<tr class="row-odd"><td><p>Exclamation Mark</p></td>
+<td><p>!</p></td>
+<td><p>!</p></td>
+</tr>
+<tr class="row-even"><td><p>Quotation Marks</p></td>
+<td><p>” “</p></td>
+<td><p>“word”</p></td>
+</tr>
+<tr class="row-odd"><td><p>Apestrophe</p></td>
+<td><p>`</p></td>
+<td><p>`</p></td>
+</tr>
+<tr class="row-even"><td><p>Hypen</p></td>
+<td><p>-</p></td>
+<td><p>-</p></td>
+</tr>
+<tr class="row-odd"><td><p>Dash</p></td>
+<td><p>-</p></td>
+<td><p>-or–</p></td>
+</tr>
+<tr class="row-even"><td><p>Colon</p></td>
+<td><p>:</p></td>
+<td><p>:</p></td>
+</tr>
+<tr class="row-odd"><td><p>Semicolon</p></td>
+<td><p>;</p></td>
+<td><p>;</p></td>
+</tr>
+<tr class="row-even"><td><p>Parantheses</p></td>
+<td><p>()</p></td>
+<td><p>()</p></td>
+</tr>
+<tr class="row-odd"><td><p>Brackets</p></td>
+<td><p>[]</p></td>
+<td><p>[]</p></td>
+</tr>
+<tr class="row-even"><td><p>Ellipsis</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+</tr>
+<tr class="row-odd"><td><p>Slash</p></td>
+<td><p>/</p></td>
+<td><p>/</p></td>
+</tr>
+</tbody>
+</table>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">docs</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">docs</span><span class="p">[</span><span class="s1">&#39;raw&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
+    <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">word_tokenize</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;[^a-zA-Z]&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">())))</span>
+<span class="n">docs</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>raw</th>
+      <th>text</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>ABSTRAK\nAkhir-akhir ini semakin maraknya penc...</td>
+      <td>[abstrak, akhir, akhir, ini, semakin, maraknya...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Makanan dan minuman khas merupakan ciri dari k...</td>
+      <td>[makanan, dan, minuman, khas, merupakan, ciri,...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Penelitian ini bertujuan untuk dapat mengetahu...</td>
+      <td>[penelitian, ini, bertujuan, untuk, dapat, men...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Abstrak\n\n Rian Pandi Pranata. NIM 1605211000...</td>
+      <td>[abstrak, rian, pandi, pranata, nim, program, ...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Perairan Soccah merupakan lokasi nelayan menca...</td>
+      <td>[perairan, soccah, merupakan, lokasi, nelayan,...</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>158</th>
+      <td>ABSTRAK\nANALISIS STRATEGI PEMASARAN DENGAN FI...</td>
+      <td>[abstrak, analisis, strategi, pemasaran, denga...</td>
+    </tr>
+    <tr>
+      <th>159</th>
+      <td>Berita merupakan pesan atau informasi hasil da...</td>
+      <td>[berita, merupakan, pesan, atau, informasi, ha...</td>
+    </tr>
+    <tr>
+      <th>160</th>
+      <td>Penelitian ini dilakukan untuk menjawab permas...</td>
+      <td>[penelitian, ini, dilakukan, untuk, menjawab, ...</td>
+    </tr>
+    <tr>
+      <th>161</th>
+      <td>Tujuan dari penelitian ini adalah untuk menemu...</td>
+      <td>[tujuan, dari, penelitian, ini, adalah, untuk,...</td>
+    </tr>
+    <tr>
+      <th>162</th>
+      <td>Seorang muslim yang faham tentang halal lifest...</td>
+      <td>[seorang, muslim, yang, faham, tentang, halal,...</td>
+    </tr>
+  </tbody>
+</table>
+<p>163 rows × 2 columns</p>
+</div></div></div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="stopwords">
+<h1>Stopwords<a class="headerlink" href="#stopwords" title="Permalink to this headline">#</a></h1>
+<p>Didalam <em>text mining</em> terdapat <em>stopwords</em>, dimana itu adalah kumpulan kosa kata yang tidak mengandung arti sehingga tidak diperlukan untuk proses <em>mining</em> nanti. Jika kata terdeteksi sebagai <em>stopwords</em> maka kata tersebut akan dihapus dari sebuah dokumen</p>
+<section id="stopwords-dictionary">
+<h2>Stopwords Dictionary<a class="headerlink" href="#stopwords-dictionary" title="Permalink to this headline">#</a></h2>
+<p><a href="https://gist.github.com/sebleier/554280" title="NLTK's list of english stopwords">English Stopwords Dictionary</a></p>
+<p><a href="https://github.com/stopwords-iso/stopwords-id/blob/master/raw/indonesian-stopwords-complete.txt" title="indonesian-stopwords-complete.txt">Indonesian Stopwords Dictionary</a></p>
+<blockquote>
+<div><p>Kedua <em>stopwords</em> tadi digabung menjadi satu</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">docs</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">docs</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
+    <span class="k">lambda</span> <span class="n">doc</span><span class="p">:</span> <span class="p">[</span><span class="n">d</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">doc</span> <span class="k">if</span> <span class="n">d</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">indo_stopwords</span><span class="p">])</span>
+    <span class="c1"># lambda doc: [d for d in doc if d not in indo_stopwords and d in factory_dictionary])</span>
+<span class="n">docs</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>raw</th>
+      <th>text</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>ABSTRAK\nAkhir-akhir ini semakin maraknya penc...</td>
+      <td>[abstrak, maraknya, pencurian, kayu, milik, ne...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Makanan dan minuman khas merupakan ciri dari k...</td>
+      <td>[makanan, minuman, khas, ciri, kekayaan, sumbe...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Penelitian ini bertujuan untuk dapat mengetahu...</td>
+      <td>[penelitian, bertujuan, pengaruh, motivasi, ke...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Abstrak\n\n Rian Pandi Pranata. NIM 1605211000...</td>
+      <td>[abstrak, rian, pandi, pranata, nim, program, ...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Perairan Soccah merupakan lokasi nelayan menca...</td>
+      <td>[perairan, soccah, lokasi, nelayan, mencari, i...</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>158</th>
+      <td>ABSTRAK\nANALISIS STRATEGI PEMASARAN DENGAN FI...</td>
+      <td>[abstrak, analisis, strategi, pemasaran, finte...</td>
+    </tr>
+    <tr>
+      <th>159</th>
+      <td>Berita merupakan pesan atau informasi hasil da...</td>
+      <td>[berita, pesan, informasi, hasil, proses, kons...</td>
+    </tr>
+    <tr>
+      <th>160</th>
+      <td>Penelitian ini dilakukan untuk menjawab permas...</td>
+      <td>[penelitian, permasalahan, praktik, hadiah, ku...</td>
+    </tr>
+    <tr>
+      <th>161</th>
+      <td>Tujuan dari penelitian ini adalah untuk menemu...</td>
+      <td>[tujuan, penelitian, menemukan, pengaruh, peng...</td>
+    </tr>
+    <tr>
+      <th>162</th>
+      <td>Seorang muslim yang faham tentang halal lifest...</td>
+      <td>[muslim, faham, halal, lifestyle, sejatinya, m...</td>
+    </tr>
+  </tbody>
+</table>
+<p>163 rows × 2 columns</p>
+</div></div></div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="stemming">
+<h1>Stemming<a class="headerlink" href="#stemming" title="Permalink to this headline">#</a></h1>
+<p>Didalam <em>text mining</em> terdapat <em>stemming</em>, dimana itu adalah sebuah cara untuk mentransformasikan sebuha kata menjadi bentuk pertama atau menjadi bentuk akarnya, seperti:</p>
+<p>memakan menjadi makan</p>
+<section id="stemming-dictionary">
+<h2>Stemming Dictionary<a class="headerlink" href="#stemming-dictionary" title="Permalink to this headline">#</a></h2>
+<p><a href="https://github.com/har07/PySastrawi/blob/master/src/Sastrawi/Stemmer/data/kata-dasar.txt" title="kata-dasar.txt">Indonesian Stemmer Dictionary</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">term_dict</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">docs</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]:</span>
+    <span class="k">for</span> <span class="n">term</span> <span class="ow">in</span> <span class="n">doc</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">term</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">term_dict</span><span class="p">:</span>
+            <span class="n">term_dict</span><span class="p">[</span><span class="n">term</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span>
+
+<span class="k">for</span> <span class="n">term</span> <span class="ow">in</span> <span class="n">term_dict</span><span class="p">:</span>
+    <span class="n">term_dict</span><span class="p">[</span><span class="n">term</span><span class="p">]</span> <span class="o">=</span> <span class="n">stemmer</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">term</span><span class="p">)</span>
+
+<span class="n">docs</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">docs</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
+    <span class="k">lambda</span> <span class="n">doc</span><span class="p">:</span> <span class="p">[</span><span class="n">term_dict</span><span class="p">[</span><span class="n">term</span><span class="p">]</span> <span class="k">for</span> <span class="n">term</span> <span class="ow">in</span> <span class="n">doc</span><span class="p">])</span>
+<span class="n">docs</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>raw</th>
+      <th>text</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>ABSTRAK\nAkhir-akhir ini semakin maraknya penc...</td>
+      <td>[abstrak, marak, curi, kayu, milik, negara, hu...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Makanan dan minuman khas merupakan ciri dari k...</td>
+      <td>[makan, minum, khas, ciri, kaya, sumberdaya, a...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Penelitian ini bertujuan untuk dapat mengetahu...</td>
+      <td>[teliti, tuju, pengaruh, motivasi, kerja, medi...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Abstrak\n\n Rian Pandi Pranata. NIM 1605211000...</td>
+      <td>[abstrak, rian, pandi, pranata, nim, program, ...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Perairan Soccah merupakan lokasi nelayan menca...</td>
+      <td>[air, soccah, lokasi, nelayan, cari, ikan, org...</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>158</th>
+      <td>ABSTRAK\nANALISIS STRATEGI PEMASARAN DENGAN FI...</td>
+      <td>[abstrak, analisis, strategi, pasar, fintech, ...</td>
+    </tr>
+    <tr>
+      <th>159</th>
+      <td>Berita merupakan pesan atau informasi hasil da...</td>
+      <td>[berita, pesan, informasi, hasil, proses, kons...</td>
+    </tr>
+    <tr>
+      <th>160</th>
+      <td>Penelitian ini dilakukan untuk menjawab permas...</td>
+      <td>[teliti, masalah, praktik, hadiah, kupon, undi...</td>
+    </tr>
+    <tr>
+      <th>161</th>
+      <td>Tujuan dari penelitian ini adalah untuk menemu...</td>
+      <td>[tuju, teliti, temu, pengaruh, alam, sesuai, t...</td>
+    </tr>
+    <tr>
+      <th>162</th>
+      <td>Seorang muslim yang faham tentang halal lifest...</td>
+      <td>[muslim, faham, halal, lifestyle, sejati, perh...</td>
+    </tr>
+  </tbody>
+</table>
+<p>163 rows × 2 columns</p>
+</div></div></div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="frequency-distribution">
+<h1>Frequency Distribution<a class="headerlink" href="#frequency-distribution" title="Permalink to this headline">#</a></h1>
+<p>Dipakai untuk menghitung distribusi frekuensi dari setiap kata</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">docs</span><span class="p">[</span><span class="s1">&#39;freq&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">docs</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">FreqDist</span><span class="p">)</span>
+<span class="n">docs</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>raw</th>
+      <th>text</th>
+      <th>freq</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>ABSTRAK\nAkhir-akhir ini semakin maraknya penc...</td>
+      <td>[abstrak, marak, curi, kayu, milik, negara, hu...</td>
+      <td>{'abstrak': 1, 'marak': 1, 'curi': 4, 'kayu': ...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Makanan dan minuman khas merupakan ciri dari k...</td>
+      <td>[makan, minum, khas, ciri, kaya, sumberdaya, a...</td>
+      <td>{'makan': 8, 'minum': 9, 'khas': 9, 'ciri': 1,...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Penelitian ini bertujuan untuk dapat mengetahu...</td>
+      <td>[teliti, tuju, pengaruh, motivasi, kerja, medi...</td>
+      <td>{'teliti': 4, 'tuju': 1, 'pengaruh': 2, 'motiv...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Abstrak\n\n Rian Pandi Pranata. NIM 1605211000...</td>
+      <td>[abstrak, rian, pandi, pranata, nim, program, ...</td>
+      <td>{'abstrak': 1, 'rian': 1, 'pandi': 1, 'pranata...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Perairan Soccah merupakan lokasi nelayan menca...</td>
+      <td>[air, soccah, lokasi, nelayan, cari, ikan, org...</td>
+      <td>{'air': 7, 'soccah': 2, 'lokasi': 1, 'nelayan'...</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>158</th>
+      <td>ABSTRAK\nANALISIS STRATEGI PEMASARAN DENGAN FI...</td>
+      <td>[abstrak, analisis, strategi, pasar, fintech, ...</td>
+      <td>{'abstrak': 1, 'analisis': 1, 'strategi': 5, '...</td>
+    </tr>
+    <tr>
+      <th>159</th>
+      <td>Berita merupakan pesan atau informasi hasil da...</td>
+      <td>[berita, pesan, informasi, hasil, proses, kons...</td>
+      <td>{'berita': 11, 'pesan': 1, 'informasi': 2, 'ha...</td>
+    </tr>
+    <tr>
+      <th>160</th>
+      <td>Penelitian ini dilakukan untuk menjawab permas...</td>
+      <td>[teliti, masalah, praktik, hadiah, kupon, undi...</td>
+      <td>{'teliti': 8, 'masalah': 1, 'praktik': 1, 'had...</td>
+    </tr>
+    <tr>
+      <th>161</th>
+      <td>Tujuan dari penelitian ini adalah untuk menemu...</td>
+      <td>[tuju, teliti, temu, pengaruh, alam, sesuai, t...</td>
+      <td>{'tuju': 1, 'teliti': 6, 'temu': 2, 'pengaruh'...</td>
+    </tr>
+    <tr>
+      <th>162</th>
+      <td>Seorang muslim yang faham tentang halal lifest...</td>
+      <td>[muslim, faham, halal, lifestyle, sejati, perh...</td>
+      <td>{'muslim': 2, 'faham': 1, 'halal': 9, 'lifesty...</td>
+    </tr>
+  </tbody>
+</table>
+<p>163 rows × 3 columns</p>
+</div></div></div>
+</div>
+<section id="text-frequency-table">
+<h2>Text Frequency Table<a class="headerlink" href="#text-frequency-table" title="Permalink to this headline">#</a></h2>
+<p>Agar memudahkan kita untuk melihat distribusi frekuensi dari teks, kita bisa memanfaatkan display table dengan cara memasukkan data distribusi frekuensi ke dalam <em>DataFrame</em> baru</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tf_table</span> <span class="o">=</span> <span class="n">docs</span><span class="p">[</span><span class="s1">&#39;freq&#39;</span><span class="p">]</span>
+<span class="n">tf_table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">tf_table</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="c1"># bentuk aljabar</span>
+<span class="n">tf_table</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>abstrak</th>
+      <th>marak</th>
+      <th>curi</th>
+      <th>kayu</th>
+      <th>milik</th>
+      <th>negara</th>
+      <th>hutan</th>
+      <th>masyarakat</th>
+      <th>rumus</th>
+      <th>sanksi</th>
+      <th>...</th>
+      <th>saring</th>
+      <th>trauma</th>
+      <th>interpersonal</th>
+      <th>cemas</th>
+      <th>derita</th>
+      <th>faham</th>
+      <th>notabennya</th>
+      <th>diajarakan</th>
+      <th>slovin</th>
+      <th>ho</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>4.0</td>
+      <td>4.0</td>
+      <td>3.0</td>
+      <td>2.0</td>
+      <td>5.0</td>
+      <td>4.0</td>
+      <td>4.0</td>
+      <td>8.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>3.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>158</th>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>2.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>159</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>2.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>160</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>161</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>162</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>163 rows × 3221 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">docs</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">docs</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">doc</span><span class="p">:</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">doc</span><span class="p">]))</span>
+<span class="n">docs</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>raw</th>
+      <th>text</th>
+      <th>freq</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>ABSTRAK\nAkhir-akhir ini semakin maraknya penc...</td>
+      <td>abstrak marak curi kayu milik negara hutan mas...</td>
+      <td>{'abstrak': 1, 'marak': 1, 'curi': 4, 'kayu': ...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Makanan dan minuman khas merupakan ciri dari k...</td>
+      <td>makan minum khas ciri kaya sumberdaya alam dae...</td>
+      <td>{'makan': 8, 'minum': 9, 'khas': 9, 'ciri': 1,...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Penelitian ini bertujuan untuk dapat mengetahu...</td>
+      <td>teliti tuju pengaruh motivasi kerja mediator s...</td>
+      <td>{'teliti': 4, 'tuju': 1, 'pengaruh': 2, 'motiv...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Abstrak\n\n Rian Pandi Pranata. NIM 1605211000...</td>
+      <td>abstrak rian pandi pranata nim program studi s...</td>
+      <td>{'abstrak': 1, 'rian': 1, 'pandi': 1, 'pranata...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Perairan Soccah merupakan lokasi nelayan menca...</td>
+      <td>air soccah lokasi nelayan cari ikan organisme ...</td>
+      <td>{'air': 7, 'soccah': 2, 'lokasi': 1, 'nelayan'...</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>158</th>
+      <td>ABSTRAK\nANALISIS STRATEGI PEMASARAN DENGAN FI...</td>
+      <td>abstrak analisis strategi pasar fintech btm sa...</td>
+      <td>{'abstrak': 1, 'analisis': 1, 'strategi': 5, '...</td>
+    </tr>
+    <tr>
+      <th>159</th>
+      <td>Berita merupakan pesan atau informasi hasil da...</td>
+      <td>berita pesan informasi hasil proses konstruksi...</td>
+      <td>{'berita': 11, 'pesan': 1, 'informasi': 2, 'ha...</td>
+    </tr>
+    <tr>
+      <th>160</th>
+      <td>Penelitian ini dilakukan untuk menjawab permas...</td>
+      <td>teliti masalah praktik hadiah kupon undi produ...</td>
+      <td>{'teliti': 8, 'masalah': 1, 'praktik': 1, 'had...</td>
+    </tr>
+    <tr>
+      <th>161</th>
+      <td>Tujuan dari penelitian ini adalah untuk menemu...</td>
+      <td>tuju teliti temu pengaruh alam sesuai tokoh ut...</td>
+      <td>{'tuju': 1, 'teliti': 6, 'temu': 2, 'pengaruh'...</td>
+    </tr>
+    <tr>
+      <th>162</th>
+      <td>Seorang muslim yang faham tentang halal lifest...</td>
+      <td>muslim faham halal lifestyle sejati perhati ga...</td>
+      <td>{'muslim': 2, 'faham': 1, 'halal': 9, 'lifesty...</td>
+    </tr>
+  </tbody>
+</table>
+<p>163 rows × 3 columns</p>
+</div></div></div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="term-frequency">
+<h1>Term Frequency<a class="headerlink" href="#term-frequency" title="Permalink to this headline">#</a></h1>
+<p>Apa itu <em>Term Frequency</em>? adalah sebuah cara untuk menghitung kemunculan sebuah kata (term) dari sebuah dokumen</p>
+<p>Formula:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>tf(t,d) = count of t in d / number of words in d
+
+where:
+    t: term
+    d: document
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">count_vect_res</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">docs</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">])</span>
+<span class="n">vectorizer</span><span class="o">.</span><span class="n">vocabulary_</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;abstrak&#39;: 5,
+ &#39;marak&#39;: 1658,
+ &#39;curi&#39;: 499,
+ &#39;kayu&#39;: 1258,
+ &#39;milik&#39;: 1777,
+ &#39;negara&#39;: 1891,
+ &#39;hutan&#39;: 1012,
+ &#39;masyarakat&#39;: 1678,
+ &#39;rumus&#39;: 2430,
+ &#39;sanksi&#39;: 2472,
+ &#39;pidana&#39;: 2129,
+ &#39;undang&#39;: 3056,
+ &#39;nomor&#39;: 1916,
+ &#39;cegah&#39;: 411,
+ &#39;berantas&#39;: 286,
+ &#39;rusa&#39;: 2432,
+ &#39;pasal&#39;: 2028,
+ &#39;ayat&#39;: 202,
+ &#39;jatuh&#39;: 1169,
+ &#39;laku&#39;: 1472,
+ &#39;hukum&#39;: 1006,
+ &#39;berat&#39;: 287,
+ &#39;efek&#39;: 675,
+ &#39;jera&#39;: 1175,
+ &#39;ringan&#39;: 2403,
+ &#39;tempat&#39;: 2879,
+ &#39;tinggal&#39;: 2949,
+ &#39;timbul&#39;: 2942,
+ &#39;ketidaktepatan&#39;: 1316,
+ &#39;jenis&#39;: 1172,
+ &#39;teliti&#39;: 2872,
+ &#39;tulis&#39;: 3017,
+ &#39;skripsi&#39;: 2659,
+ &#39;normatif&#39;: 1924,
+ &#39;dekat&#39;: 540,
+ &#39;pandang&#39;: 2003,
+ &#39;atur&#39;: 189,
+ &#39;objek&#39;: 1943,
+ &#39;kaji&#39;: 1207,
+ &#39;bahan&#39;: 211,
+ &#39;primer&#39;: 2210,
+ &#39;cakup&#39;: 392,
+ &#39;sekunder&#39;: 2529,
+ &#39;hasil&#39;: 960,
+ &#39;buku&#39;: 369,
+ &#39;cacat&#39;: 389,
+ &#39;tersier&#39;: 2910,
+ &#39;kamus&#39;: 1222,
+ &#39;kumpul&#39;: 1448,
+ &#39;studi&#39;: 2747,
+ &#39;pustaka&#39;: 2276,
+ &#39;konsep&#39;: 1381,
+ &#39;sejarah&#39;: 2521,
+ &#39;tindak&#39;: 2947,
+ &#39;perintah&#39;: 2101,
+ &#39;minggir&#39;: 1780,
+ &#39;hak&#39;: 938,
+ &#39;desa&#39;: 559,
+ &#39;miskin&#39;: 1787,
+ &#39;tingkat&#39;: 2951,
+ &#39;sejahtera&#39;: 2520,
+ &#39;turun&#39;: 3028,
+ &#39;manfaat&#39;: 1647,
+ &#39;modal&#39;: 1799,
+ &#39;uu&#39;: 3091,
+ &#39;sistem&#39;: 2640,
+ &#39;balas&#39;: 222,
+ &#39;sesuai&#39;: 2586,
+ &#39;buat&#39;: 359,
+ &#39;fokus&#39;: 809,
+ &#39;baik&#39;: 216,
+ &#39;perilaku&#39;: 2099,
+ &#39;taat&#39;: 2804,
+ &#39;tata&#39;: 2846,
+ &#39;tertib&#39;: 2911,
+ &#39;lingkung&#39;: 1561,
+ &#39;dasar&#39;: 521,
+ &#39;analisis&#39;: 121,
+ &#39;tuju&#39;: 3013,
+ &#39;kunci&#39;: 1449,
+ &#39;makan&#39;: 1628,
+ &#39;minum&#39;: 1785,
+ &#39;khas&#39;: 1322,
+ &#39;ciri&#39;: 442,
+ &#39;kaya&#39;: 1256,
+ &#39;sumberdaya&#39;: 2772,
+ &#39;alam&#39;: 79,
+ &#39;daerah&#39;: 502,
+ &#39;maksimal&#39;: 1632,
+ &#39;pariwisata&#39;: 2022,
+ &#39;pulau&#39;: 2263,
+ &#39;giligenting&#39;: 883,
+ &#39;tunjang&#39;: 3024,
+ &#39;salah&#39;: 2449,
+ &#39;spot&#39;: 2708,
+ &#39;lanjut&#39;: 1489,
+ &#39;madura&#39;: 1610,
+ &#39;potensi&#39;: 2182,
+ &#39;susun&#39;: 2789,
+ &#39;strategi&#39;: 2742,
+ &#39;kembang&#39;: 1286,
+ &#39;lokasi&#39;: 1582,
+ &#39;laksana&#39;: 1471,
+ &#39;nopember&#39;: 1919,
+ &#39;pebruari&#39;: 2044,
+ &#39;wisata&#39;: 3161,
+ &#39;sumenep&#39;: 2773,
+ &#39;metode&#39;: 1764,
+ &#39;kualitatif&#39;: 1437,
+ &#39;data&#39;: 523,
+ &#39;olah&#39;: 1953,
+ &#39;matrik&#39;: 1687,
+ &#39;swot&#39;: 2793,
+ &#39;simpul&#39;: 2629,
+ &#39;dukung&#39;: 659,
+ &#39;kue&#39;: 1443,
+ &#39;bapel&#39;: 237,
+ &#39;gula&#39;: 918,
+ &#39;nira&#39;: 1911,
+ &#39;siwalan&#39;: 2649,
+ &#39;legen&#39;: 1517,
+ &#39;deskriptif&#39;: 567,
+ &#39;kombinasi&#39;: 1360,
+ &#39;faktor&#39;: 762,
+ &#39;ifas&#39;: 1023,
+ &#39;efas&#39;: 674,
+ &#39;st&#39;: 2716,
+ &#39;wo&#39;: 3166,
+ &#39;wt&#39;: 3172,
+ &#39;liput&#39;: 1567,
+ &#39;promosi&#39;: 2234,
+ &#39;paket&#39;: 1995,
+ &#39;diskon&#39;: 615,
+ &#39;dagang&#39;: 504,
+ &#39;edukasi&#39;: 673,
+ &#39;kemas&#39;: 1284,
+ &#39;bangun&#39;: 230,
+ &#39;industri&#39;: 1066,
+ &#39;sapta&#39;: 2481,
+ &#39;jaga&#39;: 1148,
+ &#39;kualitas&#39;: 1436,
+ &#39;pengaruh&#39;: 2071,
+ &#39;motivasi&#39;: 1814,
+ &#39;kerja&#39;: 1306,
+ &#39;mediator&#39;: 1703,
+ &#39;self&#39;: 2538,
+ &#39;efficacy&#39;: 679,
+ &#39;prestasi&#39;: 2203,
+ &#39;karyawan&#39;: 1246,
+ &#39;kjpp&#39;: 1342,
+ &#39;gear&#39;: 864,
+ &#39;kota&#39;: 1416,
+ &#39;surabaya&#39;: 2781,
+ &#39;usia&#39;: 3084,
+ &#39;ni&#39;: 1904,
+ &#39;uji&#39;: 3043,
+ &#39;statistik&#39;: 2731,
+ &#39;masalah&#39;: 1669,
+ &#39;muncul&#39;: 1842,
+ &#39;latar&#39;: 1500,
+ &#39;sifat&#39;: 2610,
+ &#39;pegawai&#39;: 2051,
+ &#39;kuasa&#39;: 1440,
+ &#39;butuh&#39;: 385,
+ &#39;bantu&#39;: 233,
+ &#39;hadap&#39;: 930,
+ &#39;kontrol&#39;: 1399,
+ &#39;efikasi&#39;: 680,
+ &#39;konsumen&#39;: 1390,
+ &#39;rian&#39;: 2397,
+ &#39;pandi&#39;: 2005,
+ &#39;pranata&#39;: 2193,
+ &#39;nim&#39;: 1910,
+ &#39;program&#39;: 2232,
+ &#39;sosiologi&#39;: 2696,
+ &#39;fakultas&#39;: 765,
+ &#39;ilmu&#39;: 1035,
+ &#39;sosial&#39;: 2694,
+ &#39;budaya&#39;: 361,
+ &#39;universitas&#39;: 3065,
+ &#39;trunojoyo&#39;: 3002,
+ &#39;wacana&#39;: 3125,
+ &#39;berita&#39;: 290,
+ &#39;detikcom&#39;: 579,
+ &#39;peristiwa&#39;: 2103,
+ &#39;rusuh&#39;: 2434,
+ &#39;mahasiswa&#39;: 1620,
+ &#39;papua&#39;: 2014,
+ &#39;kritis&#39;: 1428,
+ &#39;detik&#39;: 578,
+ &#39;com&#39;: 470,
+ &#39;deskrriptif&#39;: 568,
+ &#39;critical&#39;: 494,
+ &#39;discourse&#39;: 613,
+ &#39;analysis&#39;: 123,
+ &#39;fairclough&#39;: 760,
+ &#39;teknik&#39;: 2867,
+ &#39;observasi&#39;: 1945,
+ &#39;wawancara&#39;: 3146,
+ &#39;dokumentasi&#39;: 636,
+ &#39;norman&#39;: 1923,
+ &#39;teori&#39;: 2888,
+ &#39;tunjuk&#39;: 3025,
+ &#39;relatif&#39;: 2349,
+ &#39;proporsional&#39;: 2239,
+ &#39;lemah&#39;: 1523,
+ &#39;proses&#39;: 2241,
+ &#39;verifikasi&#39;: 3107,
+ &#39;konfirmasi&#39;: 1376,
+ &#39;kaidah&#39;: 1204,
+ &#39;jurnalistik&#39;: 1193,
+ &#39;pakai&#39;: 1993,
+ &#39;partisipan&#39;: 2026,
+ &#39;narasumber&#39;: 1873,
+ &#39;dapat&#39;: 514,
+ &#39;sudut&#39;: 2758,
+ &#39;gambar&#39;: 851,
+ &#39;satu&#39;: 2489,
+ &#39;air&#39;: 49,
+ &#39;soccah&#39;: 2674,
+ &#39;nelayan&#39;: 1895,
+ &#39;cari&#39;: 404,
+ &#39;ikan&#39;: 1027,
+ &#39;organisme&#39;: 1973,
+ &#39;laut&#39;: 1502,
+ &#39;udang&#39;: 3040,
+ &#39;rebon&#39;: 2329,
+ &#39;acetes&#39;: 10,
+ &#39;sp&#39;: 2699,
+ &#39;minat&#39;: 1778,
+ &#39;kirim&#39;: 1336,
+ &#39;gresik&#39;: 907,
+ &#39;jalur&#39;: 1153,
+ &#39;transportasi&#39;: 2989,
+ &#39;kapal&#39;: 1230,
+ &#39;batu&#39;: 251,
+ &#39;bara&#39;: 239,
+ &#39;usaha&#39;: 3080,
+ &#39;reparasi&#39;: 2367,
+ &#39;situ&#39;: 2646,
+ &#39;giat&#39;: 881,
+ &#39;sumber&#39;: 2770,
+ &#39;masuk&#39;: 1676,
+ &#39;pb&#39;: 2039,
+ &#39;logam&#39;: 1579,
+ &#39;akumulasi&#39;: 72,
+ &#39;sebab&#39;: 2502,
+ &#39;dampak&#39;: 510,
+ &#39;bahaya&#39;: 215,
+ &#39;biota&#39;: 320,
+ &#39;manusia&#39;: 1655,
+ &#39;konsumsi&#39;: 1391,
+ &#39;konsentrasi&#39;: 1380,
+ &#39;batas&#39;: 249,
+ &#39;ambil&#39;: 108,
+ &#39;sampel&#39;: 2462,
+ &#39;kali&#39;: 1211,
+ &#39;stasiun&#39;: 2726,
+ &#39;dianalisa&#39;: 592,
+ &#39;nilai&#39;: 1909,
+ &#39;mg&#39;: 1768,
+ &#39;kg&#39;: 1320,
+ &#39;maksimum&#39;: 1633,
+ &#39;pe&#39;: 2042,
+ &#39;rminggu&#39;: 2409,
+ &#39;topik&#39;: 2971,
+ &#39;deteksi&#39;: 575,
+ &#39;tarik&#39;: 2843,
+ &#39;perhati&#39;: 2096,
+ &#39;teknologi&#39;: 2869,
+ &#39;bidang&#39;: 307,
+ &#39;computer&#39;: 477,
+ &#39;vision&#39;: 3119,
+ &#39;peran&#39;: 2087,
+ &#39;hidup&#39;: 978,
+ &#39;hari&#39;: 954,
+ &#39;aman&#39;: 104,
+ &#39;area&#39;: 161,
+ &#39;polisi&#39;: 2159,
+ &#39;sangka&#39;: 2471,
+ &#39;jahat&#39;: 1150,
+ &#39;identifikasi&#39;: 1018,
+ &#39;ramai&#39;: 2301,
+ &#39;contoh&#39;: 484,
+ &#39;one&#39;: 1957,
+ &#39;stage&#39;: 2719,
+ &#39;detector&#39;: 574,
+ &#39;algoritma&#39;: 88,
+ &#39;look&#39;: 1586,
+ &#39;versi&#39;: 3108,
+ &#39;yolo&#39;: 3186,
+ &#39;gabung&#39;: 842,
+ &#39;beda&#39;: 264,
+ &#39;sama&#39;: 2457,
+ &#39;framework&#39;: 826,
+ &#39;kurang&#39;: 1454,
+ &#39;komputasi&#39;: 1370,
+ &#39;tahap&#39;: 2811,
+ &#39;tentu&#39;: 2887,
+ &#39;ukur&#39;: 3046,
+ &#39;anchor&#39;: 128,
+ &#39;box&#39;: 347,
+ &#39;grid&#39;: 910,
+ &#39;bentuk&#39;: 281,
+ &#39;target&#39;: 2839,
+ &#39;arsitektur&#39;: 166,
+ &#39;latih&#39;: 1501,
+ &#39;menghasikan&#39;: 1731,
+ &#39;guna&#39;: 920,
+ &#39;pretrained&#39;: 2205,
+ &#39;model&#39;: 1800,
+ &#39;epoch&#39;: 730,
+ &#39;akurasi&#39;: 74,
+ &#39;citra&#39;: 445,
+ &#39;score&#39;: 2498,
+ &#39;analis&#39;: 119,
+ &#39;stagnansi&#39;: 2720,
+ &#39;hubung&#39;: 1004,
+ &#39;lembaga&#39;: 1526,
+ &#39;wenang&#39;: 3152,
+ &#39;komisi&#39;: 1361,
+ &#39;korupsi&#39;: 1414,
+ &#39;fakta&#39;: 761,
+ &#39;seteru&#39;: 2587,
+ &#39;republik&#39;: 2371,
+ &#39;indonesia&#39;: 1063,
+ &#39;polri&#39;: 2163,
+ &#39;kpk&#39;: 1419,
+ &#39;senjang&#39;: 2556,
+ &#39;duduk&#39;: 657,
+ &#39;kewenagan&#39;: 1317,
+ &#39;sidi&#39;: 2606,
+ &#39;sidik&#39;: 2607,
+ &#39;tumpang&#39;: 3019,
+ &#39;tindih&#39;: 2948,
+ &#39;adaya&#39;: 23,
+ &#39;jo&#39;: 1179,
+ &#39;ubah&#39;: 3036,
+ &#39;atas&#39;: 183,
+ &#39;doktrinal&#39;: 634,
+ &#39;statute&#39;: 2733,
+ &#39;approach&#39;: 154,
+ &#39;conceptual&#39;: 478,
+ &#39;reposisi&#39;: 2369,
+ &#39;tumpu&#39;: 3020,
+ &#39;indikator&#39;: 1059,
+ &#39;lingkup&#39;: 1562,
+ &#39;lidi&#39;: 1547,
+ &#39;pengyidik&#39;: 2077,
+ &#39;siti&#39;: 2645,
+ &#39;komariyah&#39;: 1359,
+ &#39;bahagia&#39;: 210,
+ &#39;pasang&#39;: 2029,
+ &#39;nikah&#39;: 1906,
+ &#39;psikologi&#39;: 2251,
+ &#39;kuantitatif&#39;: 1439,
+ &#39;subjek&#39;: 2754,
+ &#39;suami&#39;: 2751,
+ &#39;istri&#39;: 1138,
+ &#39;meni&#39;: 1736,
+ &#39;menggunkanan&#39;: 1729,
+ &#39;angket&#39;: 138,
+ &#39;tekhnik&#39;: 2866,
+ &#39;independent&#39;: 1054,
+ &#39;tes&#39;: 2914,
+ &#39;kawin&#39;: 1255,
+ &#39;sample&#39;: 2464,
+ &#39;test&#39;: 2916,
+ &#39;spss&#39;: 2710,
+ &#39;statistical&#39;: 2729,
+ &#39;product&#39;: 2222,
+ &#39;service&#39;: 2584,
+ &#39;solution&#39;: 2686,
+ &#39;windows&#39;: 3159,
+ &#39;oleh&#39;: 1955,
+ &#39;signifikansi&#39;: 2615,
+ &#39;hipotesis&#39;: 988,
+ &#39;terima&#39;: 2901,
+ &#39;signifikan&#39;: 2614,
+ &#39;sedia&#39;: 2509,
+ &#39;hijau&#39;: 979,
+ &#39;pakan&#39;: 1994,
+ &#39;ternak&#39;: 2908,
+ &#39;optimal&#39;: 1965,
+ &#39;runput&#39;: 2431,
+ &#39;gajah&#39;: 844,
+ &#39;jerami&#39;: 1176,
+ &#39;pohon&#39;: 2153,
+ &#39;jagung&#39;: 1149,
+ &#39;daun&#39;: 525,
+ &#39;lamtoro&#39;: 1482,
+ &#39;bongkol&#39;: 335,
+ &#39;pisang&#39;: 2140,
+ &#39;rumput&#39;: 2429,
+ &#39;liar&#39;: 1541,
+ &#39;pilih&#39;: 2134,
+ &#39;alternaternatif&#39;: 94,
+ &#39;anp&#39;: 143,
+ &#39;analytical&#39;: 124,
+ &#39;network&#39;: 1897,
+ &#39;software&#39;: 2679,
+ &#39;super&#39;: 2777,
+ &#39;decision&#39;: 532,
+ &#39;sehinggan&#39;: 2519,
+ &#39;temu&#39;: 2882,
+ &#39;alternatif&#39;: 95,
+ &#39;jadi&#39;: 1146,
+ &#39;sapi&#39;: 2480,
+ &#39;survey&#39;: 2785,
+ &#39;terna&#39;: 2907,
+ &#39;rangking&#39;: 2307,
+ &#39;tinggi&#39;: 2950,
+ &#39;utama&#39;: 3088,
+ &#39;terap&#39;: 2895,
+ &#39;kabupaten&#39;: 1198,
+ &#39;pamekasan&#39;: 1999,
+ &#39;timbang&#39;: 2941,
+ &#39;aspek&#39;: 175,
+ &#39;kriteria&#39;: 1427,
+ &#39;ekonomi&#39;: 685,
+ &#39;keywords&#39;: 1319,
+ &#39;compassion&#39;: 474,
+ &#39;survivor&#39;: 2786,
+ &#39;hiv&#39;: 992,
+ &#39;aids&#39;: 45,
+ &#39;viral&#39;: 3116,
+ &#39;load&#39;: 1576,
+ &#39;jalan&#39;: 1152,
+ &#39;rincian&#39;: 2401,
+ &#39;laki&#39;: 1469,
+ &#39;perempuan&#39;: 2094,
+ &#39;rentang&#39;: 2364,
+ &#39;dewasa&#39;: 585,
+ &#39;purposive&#39;: 2272,
+ &#39;sampling&#39;: 2466,
+ &#39;semi&#39;: 2547,
+ &#39;struktur&#39;: 2746,
+ &#39;miles&#39;: 1776,
+ &#39;huberman&#39;: 1003,
+ &#39;muka&#39;: 1836,
+ &#39;neff&#39;: 1890,
+ &#39;kindess&#39;: 1334,
+ &#39;common&#39;: 471,
+ &#39;humanity&#39;: 1009,
+ &#39;mindfulness&#39;: 1779,
+ &#39;lihat&#39;: 1552,
+ &#39;tiga&#39;: 2936,
+ &#39;bukti&#39;: 368,
+ &#39;rendah&#39;: 2361,
+ &#39;sehat&#39;: 2518,
+ &#39;tubuh&#39;: 3011,
+ &#39;konsultasi&#39;: 1389,
+ &#39;dokter&#39;: 632,
+ &#39;hibur&#39;: 976,
+ &#39;kondisi&#39;: 1375,
+ &#39;emosional&#39;: 713,
+ &#39;asa&#39;: 170,
+ &#39;isolasi&#39;: 1134,
+ &#39;orang&#39;: 1967,
+ &#39;sakit&#39;: 2448,
+ &#39;interaksi&#39;: 1102,
+ &#39;gaul&#39;: 862,
+ &#39;malu&#39;: 1636,
+ &#39;bagi&#39;: 208,
+ &#39;selaras&#39;: 2532,
+ &#39;pikir&#39;: 2132,
+ &#39;larut&#39;: 1499,
+ &#39;sadar&#39;: 2439,
+ &#39;bijak&#39;: 309,
+ &#39;baur&#39;: 252,
+ &#39;iklan&#39;: 1029,
+ &#39;jual&#39;: 1183,
+ &#39;pribadi&#39;: 2209,
+ &#39;pasar&#39;: 2030,
+ &#39;langsung&#39;: 1487,
+ &#39;putus&#39;: 2277,
+ &#39;beli&#39;: 276,
+ &#39;dealer&#39;: 529,
+ &#39;yamaha&#39;: 3184,
+ &#39;tretan&#39;: 2993,
+ &#39;motor&#39;: 1815,
+ &#39;mixed&#39;: 1792,
+ &#39;methods&#39;: 1762,
+ &#39;eksplanatoris&#39;: 693,
+ &#39;sekuensial&#39;: 2528,
+ &#39;variabel&#39;: 3099,
+ &#39;performance&#39;: 2095,
+ &#39;climate&#39;: 450,
+ &#39;organization&#39;: 1974,
+ &#39;parsial&#39;: 2024,
+ &#39;simultan&#39;: 2630,
+ &#39;variable&#39;: 3100,
+ &#39;puas&#39;: 2256,
+ &#39;nasabah&#39;: 1876,
+ &#39;persepsi&#39;: 2109,
+ &#39;accidental&#39;: 9,
+ &#39;samplig&#39;: 2465,
+ &#39;responden&#39;: 2381,
+ &#39;validitas&#39;: 3096,
+ &#39;reliabilitas&#39;: 2353,
+ &#39;normalitas&#39;: 1922,
+ &#39;multikolinieritas&#39;: 1840,
+ &#39;heterokedastisitas&#39;: 973,
+ &#39;regresi&#39;: 2337,
+ &#39;linier&#39;: 1564,
+ &#39;ganda&#39;: 853,
+ &#39;rasa&#39;: 2313,
+ &#39;kait&#39;: 1206,
+ &#39;layan&#39;: 1506,
+ &#39;suasana&#39;: 2753,
+ &#39;item&#39;: 1141,
+ &#39;atm&#39;: 184,
+ &#39;bank&#39;: 232,
+ &#39;btn&#39;: 356,
+ &#39;thitung&#39;: 2931,
+ &#39;ttabel&#39;: 3006,
+ &#39;signifkansi&#39;: 2617,
+ &#39;simpuk&#39;: 2628,
+ &#39;positif&#39;: 2177,
+ &#39;dependen&#39;: 551,
+ &#39;fhitung&#39;: 783,
+ &#39;ftabel&#39;: 832,
+ &#39;cilmate&#39;: 438,
+ &#39;orgaization&#39;: 1969,
+ &#39;langgan&#39;: 1484,
+ &#39;mayarakat&#39;: 1690,
+ &#39;rawan&#39;: 2319,
+ &#39;mri&#39;: 1817,
+ &#39;wadah&#39;: 3127,
+ &#39;kemanuisaan&#39;: 1283,
+ &#39;pamrih&#39;: 2001,
+ &#39;altruisme&#39;: 98,
+ &#39;altuisme&#39;: 99,
+ &#39;aju&#39;: 53,
+ &#39;korelasi&#39;: 1412,
+ &#39;anggota&#39;: 132,
+ &#39;aktif&#39;: 65,
+ &#39;skala&#39;: 2653,
+ &#39;likert&#39;: 1553,
+ &#39;ungkap&#39;: 3061,
+ &#39;arifin&#39;: 164,
+ &#39;empati&#39;: 716,
+ &#39;interpretasi&#39;: 1111,
+ &#39;social&#39;: 2675,
+ &#39;responsibility&#39;: 2383,
+ &#39;inisiatif&#39;: 1079,
+ &#39;rela&#39;: 2347,
+ &#39;korban&#39;: 1410,
+ &#39;zubaedi&#39;: 3204,
+ &#39;loves&#39;: 1589,
+ &#39;kasih&#39;: 1249,
+ &#39;sayang&#39;: 2492,
+ &#39;tanggung&#39;: 2830,
+ &#39;life&#39;: 1548,
+ &#39;harmony&#39;: 955,
+ &#39;serasi&#39;: 2575,
+ &#39;spearman&#39;: 2700,
+ &#39;rank&#39;: 2308,
+ &#39;sig&#39;: 2611,
+ &#39;koefisien&#39;: 1356,
+ &#39;sulfi&#39;: 2767,
+ &#39;amalia&#39;: 103,
+ &#39;english&#39;: 725,
+ &#39;study&#39;: 2748,
+ &#39;category&#39;: 408,
+ &#39;shift&#39;: 2594,
+ &#39;translation&#39;: 2987,
+ &#39;thesis&#39;: 2930,
+ &#39;abstract&#39;: 4,
+ &#39;law&#39;: 1503,
+ &#39;faculty&#39;: 758,
+ &#39;aim&#39;: 46,
+ &#39;explain&#39;: 752,
+ &#39;kinds&#39;: 1335,
+ &#39;degrees&#39;: 539,
+ &#39;equivalent&#39;: 734,
+ &#39;meaning&#39;: 1698,
+ &#39;occur&#39;: 1948,
+ &#39;found&#39;: 821,
+ &#39;analyzing&#39;: 126,
+ &#39;writer&#39;: 3171,
+ &#39;uses&#39;: 3083,
+ &#39;catford&#39;: 409,
+ &#39;theory&#39;: 2929,
+ &#39;nida&#39;: 1905,
+ &#39;bong&#39;: 334,
+ &#39;collection&#39;: 468,
+ &#39;used&#39;: 3082,
+ &#39;document&#39;: 631,
+ &#39;also&#39;: 93,
+ &#39;descriptive&#39;: 561,
+ &#39;qualitative&#39;: 2281,
+ &#39;research&#39;: 2373,
+ &#39;design&#39;: 564,
+ &#39;explained&#39;: 753,
+ &#39;descriptively&#39;: 562,
+ &#39;suit&#39;: 2762,
+ &#39;devices&#39;: 582,
+ &#39;functions&#39;: 835,
+ &#39;relate&#39;: 2348,
+ &#39;statements&#39;: 2727,
+ &#39;problem&#39;: 2216,
+ &#39;shown&#39;: 2599,
+ &#39;form&#39;: 811,
+ &#39;words&#39;: 3169,
+ &#39;phrases&#39;: 2127,
+ &#39;sentences&#39;: 2561,
+ &#39;results&#39;: 2386,
+ &#39;show&#39;: 2598,
+ &#39;contains&#39;: 483,
+ &#39;structure&#39;: 2745,
+ &#39;class&#39;: 446,
+ &#39;unit&#39;: 3062,
+ &#39;intra&#39;: 1117,
+ &#39;system&#39;: 2802,
+ &#39;furthermore&#39;: 840,
+ &#39;complete&#39;: 475,
+ &#39;increase&#39;: 1049,
+ &#39;decrease&#39;: 533,
+ &#39;lokal&#39;: 1581,
+ &#39;dam&#39;: 509,
+ &#39;jati&#39;: 1168,
+ &#39;goranggareng&#39;: 897,
+ &#39;camat&#39;: 394,
+ &#39;nguntoronadi&#39;: 1903,
+ &#39;magetan&#39;: 1614,
+ &#39;wilayah&#39;: 3157,
+ &#39;upaya&#39;: 3071,
+ &#39;daya&#39;: 526,
+ &#39;fisik&#39;: 801,
+ &#39;prinsip&#39;: 2211,
+ &#39;depan&#39;: 549,
+ &#39;mitra&#39;: 1790,
+ &#39;denganteknik&#39;: 546,
+ &#39;absah&#39;: 2,
+ &#39;triangulasi&#39;: 2997,
+ &#39;institusi&#39;: 1091,
+ &#39;sempat&#39;: 2549,
+ &#39;kelola&#39;: 1278,
+ &#39;tugas&#39;: 3012,
+ &#39;buka&#39;: 366,
+ &#39;bekerjasama&#39;: 271,
+ &#39;kerjasama&#39;: 1307,
+ &#39;swasta&#39;: 2792,
+ &#39;lahan&#39;: 1466,
+ &#39;gundul&#39;: 921,
+ &#39;tanam&#39;: 2823,
+ &#39;rajin&#39;: 2294,
+ &#39;siram&#39;: 2638,
+ &#39;budidaya&#39;: 363,
+ &#39;hewan&#39;: 975,
+ &#39;burung&#39;: 384,
+ &#39;dara&#39;: 516,
+ &#39;kendala&#39;: 1293,
+ &#39;rencana&#39;: 2360,
+ &#39;wahana&#39;: 3128,
+ &#39;mana&#39;: 1638,
+ &#39;ijin&#39;: 1025,
+ &#39;balai&#39;: 221,
+ &#39;sungai&#39;: 2775,
+ &#39;bengawan&#39;: 280,
+ &#39;solo&#39;: 2684,
+ &#39;hambat&#39;: 944,
+ &#39;tahan&#39;: 2810,
+ &#39;buruh&#39;: 382,
+ &#39;tani&#39;: 2833,
+ &#39;wanita&#39;: 3137,
+ &#39;modernisasi&#39;: 1803,
+ &#39;alat&#39;: 83,
+ &#39;dalam&#39;: 508,
+ &#39;jaring&#39;: 1165,
+ &#39;karakteristik&#39;: 1234,
+ &#39;fenomenoogi&#39;: 782,
+ &#39;non&#39;: 1917,
+ &#39;informan&#39;: 1071,
+ &#39;periksa&#39;: 2098,
+ &#39;identitas&#39;: 1021,
+ &#39;eksistensi&#39;: 690,
+ &#39;penuh&#39;: 2084,
+ &#39;keluarga&#39;: 1281,
+ &#39;gerus&#39;: 880,
+ &#39;modern&#39;: 1802,
+ &#39;meningkatkankan&#39;: 1738,
+ &#39;disiplin&#39;: 614,
+ &#39;profesionalitas&#39;: 2229,
+ &#39;sebar&#39;: 2503,
+ &#39;rumor&#39;: 2428,
+ &#39;negatif&#39;: 1892,
+ &#39;tolong&#39;: 2965,
+ &#39;urun&#39;: 3076,
+ &#39;tukar&#39;: 3015,
+ &#39;jasa&#39;: 1166,
+ &#39;alas&#39;: 82,
+ &#39;peluang&#39;: 2057,
+ &#39;ekspresi&#39;: 697,
+ &#39;sektor&#39;: 2527,
+ &#39;inovasi&#39;: 1081,
+ &#39;tahu&#39;: 2812,
+ &#39;produksi&#39;: 2224,
+ &#39;efisien&#39;: 681,
+ &#39;belakang&#39;: 273,
+ &#39;ambar&#39;: 107,
+ &#39;lawan&#39;: 1504,
+ &#39;dk&#39;: 629,
+ &#39;bedug&#39;: 266,
+ &#39;bulu&#39;: 371,
+ &#39;bek&#39;: 270,
+ &#39;nganjuk&#39;: 1901,
+ &#39;tambang&#39;: 2819,
+ &#39;gali&#39;: 847,
+ &#39;golong&#39;: 894,
+ &#39;tutup&#39;: 3029,
+ &#39;james&#39;: 1156,
+ &#39;scott&#39;: 2499,
+ &#39;pisau&#39;: 2141,
+ &#39;analisa&#39;: 120,
+ &#39;alih&#39;: 90,
+ &#39;akti&#39;: 64,
+ &#39;fasilitas&#39;: 769,
+ &#39;rusak&#39;: 2433,
+ &#39;linkungan&#39;: 1565,
+ &#39;polusi&#39;: 2164,
+ &#39;akibat&#39;: 59,
+ &#39;lalang&#39;: 1473,
+ &#39;kendara&#39;: 1295,
+ &#39;truk&#39;: 3000,
+ &#39;ganggu&#39;: 855,
+ &#39;aktifitas&#39;: 66,
+ &#39;warga&#39;: 3139,
+ &#39;belah&#39;: 272,
+ &#39;intimacy&#39;: 1116,
+ &#39;ayah&#39;: 201,
+ &#39;single&#39;: 2636,
+ &#39;parent&#39;: 2021,
+ &#39;anak&#39;: 117,
+ &#39;deskripsi&#39;: 566,
+ &#39;fenomenologi&#39;: 781,
+ &#39;tinjau&#39;: 2952,
+ &#39;masters&#39;: 1675,
+ &#39;paham&#39;: 1990,
+ &#39;caring&#39;: 405,
+ &#39;sharing&#39;: 2593,
+ &#39;informasi&#39;: 1072,
+ &#39;cerita&#39;: 424,
+ &#39;cerai&#39;: 419,
+ &#39;timpa&#39;: 2944,
+ &#39;percaya&#39;: 2091,
+ &#39;boleh&#39;: 333,
+ &#39;ikut&#39;: 1032,
+ &#39;sibuk&#39;: 2604,
+ &#39;komitmen&#39;: 1362,
+ &#39;sepakat&#39;: 2567,
+ &#39;jujur&#39;: 1186,
+ &#39;biasa&#39;: 304,
+ &#39;bohong&#39;: 331,
+ &#39;wajah&#39;: 3129,
+ &#39;gerak&#39;: 877,
+ &#39;gerik&#39;: 879,
+ &#39;lembut&#39;: 1530,
+ &#39;kontak&#39;: 1392,
+ &#39;jabat&#39;: 1143,
+ &#39;tangan&#39;: 2825,
+ &#39;peluk&#39;: 2058,
+ &#39;gandeng&#39;: 854,
+ &#39;elus&#39;: 709,
+ &#39;kepala&#39;: 1299,
+ &#39;musha&#39;: 1849,
+ &#39;rakah&#39;: 2297,
+ &#39;mutana&#39;: 1856,
+ &#39;qis&#39;: 2279,
+ &#39;ah&#39;: 42,
+ &#39;akad&#39;: 54,
+ &#39;biaya&#39;: 305,
+ &#39;muamalah&#39;: 1826,
+ &#39;khusus&#39;: 1329,
+ &#39;asset&#39;: 178,
+ &#39;barang&#39;: 240,
+ &#39;mas&#39;: 1667,
+ &#39;lahah&#39;: 1465,
+ &#39;tetap&#39;: 2918,
+ &#39;fatwa&#39;: 774,
+ &#39;dsn&#39;: 656,
+ &#39;mui&#39;: 1835,
+ &#39;xi&#39;: 3175,
+ &#39;urgensi&#39;: 3075,
+ &#39;merupukan&#39;: 1753,
+ &#39;library&#39;: 1545,
+ &#39;reseach&#39;: 2372,
+ &#39;litelatur&#39;: 1570,
+ &#39;musyarakah&#39;: 1854,
+ &#39;mutanaqishah&#39;: 1857,
+ &#39;sumberdata&#39;: 2771,
+ &#39;majalah&#39;: 1623,
+ &#39;koran&#39;: 1409,
+ &#39;ensiklopedi&#39;: 727,
+ &#39;jurnal&#39;: 1191,
+ &#39;kitab&#39;: 1339,
+ &#39;klasik&#39;: 1345,
+ &#39;implementasi&#39;: 1042,
+ &#39;syariah&#39;: 2798,
+ &#39;status&#39;: 2732,
+ &#39;agama&#39;: 37,
+ &#39;maslahat&#39;: 1672,
+ &#39;umat&#39;: 3051,
+ &#39;islam&#39;: 1130,
+ &#39;tasaruf&#39;: 2845,
+ &#39;harta&#39;: 956,
+ &#39;ajar&#39;: 50,
+ &#39;pasti&#39;: 2036,
+ &#39;ber&#39;: 283,
+ &#39;ijtihad&#39;: 1026,
+ &#39;ayu&#39;: 203,
+ &#39;aprilia&#39;: 155,
+ &#39;puji&#39;: 2262,
+ &#39;lestari&#39;: 1536,
+ &#39;hindu&#39;: 986,
+ &#39;pda&#39;: 2040,
+ &#39;sukorejo&#39;: 2764,
+ &#39;wates&#39;: 3145,
+ &#39;blitar&#39;: 324,
+ &#39;bimbing&#39;: 312,
+ &#39;sentosa&#39;: 2562,
+ &#39;dwi&#39;: 665,
+ &#39;haryanto&#39;: 958,
+ &#39;ph&#39;: 2123,
+ &#39;keanekaragaman&#39;: 1262,
+ &#39;suku&#39;: 2766,
+ &#39;adat&#39;: 22,
+ &#39;dat&#39;: 522,
+ &#39;tua&#39;: 3007,
+ &#39;raja&#39;: 2293,
+ &#39;kuta&#39;: 1458,
+ &#39;tepat&#39;: 2890,
+ &#39;iring&#39;: 1127,
+ &#39;pindah&#39;: 2137,
+ &#39;heberman&#39;: 966,
+ &#39;max&#39;: 1689,
+ &#39;weber&#39;: 3149,
+ &#39;rasional&#39;: 2314,
+ &#39;instrumental&#39;: 1094,
+ &#39;capa&#39;: 399,
+ &#39;kayakinan&#39;: 1257,
+ &#39;suluh&#39;: 2769,
+ &#39;komunikasi&#39;: 1373,
+ &#39;mepertahankan&#39;: 1746,
+ &#39;mampu&#39;: 1637,
+ &#39;siswa&#39;: 2642,
+ &#39;materi&#39;: 1684,
+ &#39;panas&#39;: 2002,
+ &#39;global&#39;: 887,
+ &#39;bas&#39;: 244,
+ &#39;socioscientific&#39;: 2676,
+ &#39;issues&#39;: 1135,
+ &#39;ssi&#39;: 2715,
+ &#39;populasi&#39;: 2171,
+ &#39;siswi&#39;: 2643,
+ &#39;kelas&#39;: 1274,
+ &#39;vii&#39;: 3113,
+ &#39;smpn&#39;: 2667,
+ &#39;bayak&#39;: 257,
+ &#39;makna&#39;: 1631,
+ &#39;bhubuhan&#39;: 301,
+ &#39;arti&#39;: 167,
+ &#39;lunas&#39;: 1602,
+ &#39;hutang&#39;: 1013,
+ &#39;keleyan&#39;: 1277,
+ &#39;socah&#39;: 2673,
+ &#39;bangkal&#39;: 227,
+ &#39;keabsan&#39;: 1261,
+ &#39;edmund&#39;: 672,
+ &#39;husserl&#39;: 1011,
+ &#39;tradisi&#39;: 2978,
+ &#39;anggap&#39;: 131,
+ &#39;sarana&#39;: 2482,
+ &#39;pesta&#39;: 2120,
+ &#39;selenggara&#39;: 2535,
+ &#39;masyrakatnya&#39;: 1679,
+ &#39;waris&#39;: 3140,
+ &#39;leluhur&#39;: 1522,
+ &#39;samping&#39;: 2463,
+ &#39;harus&#39;: 957,
+ &#39;kembali&#39;: 1285,
+ &#39;wakaf&#39;: 3131,
+ &#39;mikro&#39;: 1771,
+ &#39;barokah&#39;: 242,
+ &#39;denanyar&#39;: 543,
+ &#39;jombang&#39;: 1181,
+ &#39;bwm&#39;: 387,
+ &#39;dilaunchingkan&#39;: 603,
+ &#39;presiden&#39;: 2202,
+ &#39;jokowi&#39;: 1180,
+ &#39;bumi&#39;: 372,
+ &#39;uang&#39;: 3034,
+ &#39;dana&#39;: 512,
+ &#39;salur&#39;: 2456,
+ &#39;laznas&#39;: 1510,
+ &#39;bsm&#39;: 354,
+ &#39;produktif&#39;: 2225,
+ &#39;rp&#39;: 2417,
+ &#39;kumpi&#39;: 1447,
+ &#39;kelompok&#39;: 1279,
+ &#39;pesantren&#39;: 2117,
+ &#39;raih&#39;: 2292,
+ &#39;peringkat&#39;: 2100,
+ &#39;manajemen&#39;: 1642,
+ &#39;judul&#39;: 1185,
+ &#39;tunai&#39;: 3022,
+ &#39;pedoman&#39;: 2046,
+ &#39;bahas&#39;: 213,
+ &#39;metodologi&#39;: 1765,
+ &#39;deskiptif&#39;: 565,
+ &#39;alalisis&#39;: 78,
+ &#39;skema&#39;: 2655,
+ &#39;sana&#39;: 2467,
+ &#39;na&#39;: 1860,
+ &#39;ir&#39;: 1126,
+ &#39;organisasi&#39;: 1972,
+ &#39;pimpin&#39;: 2135,
+ &#39;awas&#39;: 199,
+ &#39;damping&#39;: 511,
+ &#39;renteng&#39;: 2365,
+ &#39;sop&#39;: 2690,
+ &#39;acu&#39;: 15,
+ &#39;atribut&#39;: 186,
+ &#39;pejal&#39;: 2052,
+ &#39;kaki&#39;: 1208,
+ &#39;fungsi&#39;: 838,
+ &#39;visual&#39;: 3120,
+ &#39;adaboost&#39;: 17,
+ &#39;classifier&#39;: 447,
+ &#39;feature&#39;: 776,
+ &#39;learning&#39;: 1513,
+ &#39;cnn&#39;: 456,
+ &#39;ekstraksi&#39;: 699,
+ &#39;fitur&#39;: 804,
+ &#39;ektraksi&#39;: 702,
+ &#39;klasifikasi&#39;: 1344,
+ &#39;adaptive&#39;: 21,
+ &#39;boosting&#39;: 339,
+ &#39;weak&#39;: 3147,
+ &#39;stump&#39;: 2749,
+ &#39;dataset&#39;: 524,
+ &#39;peta&#39;: 2121,
+ &#39;tujuh&#39;: 3014,
+ &#39;biner&#39;: 314,
+ &#39;rambut&#39;: 2302,
+ &#39;sandal&#39;: 2468,
+ &#39;celana&#39;: 412,
+ &#39;pendek&#39;: 2064,
+ &#39;bawa&#39;: 254,
+ &#39;tas&#39;: 2844,
+ &#39;ransel&#39;: 2309,
+ &#39;topi&#39;: 2970,
+ &#39;asli&#39;: 174,
+ &#39;imbang&#39;: 1040,
+ &#39;coba&#39;: 460,
+ &#39;banding&#39;: 225,
+ &#39;kedai&#39;: 1268,
+ &#39;kopi&#39;: 1408,
+ &#39;sampah&#39;: 2459,
+ &#39;yg&#39;: 3185,
+ &#39;cermin&#39;: 425,
+ &#39;nama&#39;: 1866,
+ &#39;bayar&#39;: 258,
+ &#39;indikasi&#39;: 1058,
+ &#39;bagus&#39;: 209,
+ &#39;adil&#39;: 26,
+ &#39;perspektif&#39;: 2113,
+ &#39;capai&#39;: 400,
+ &#39;reduksi&#39;: 2332,
+ &#39;saji&#39;: 2447,
+ &#39;tari&#39;: 2841,
+ &#39;mayoritas&#39;: 1692,
+ &#39;menghandalkan&#39;: 1730,
+ &#39;cipta&#39;: 441,
+ &#39;lapang&#39;: 1494,
+ &#39;pokok&#39;: 2157,
+ &#39;nan&#39;: 1868,
+ &#39;tenaga&#39;: 2883,
+ &#39;masyakat&#39;: 1677,
+ &#39;erti&#39;: 739,
+ &#39;cantum&#39;: 398,
+ &#39;ketenagakerjaan&#39;: 1313,
+ &#39;lindung&#39;: 1556,
+ &#39;empiris&#39;: 718,
+ &#39;pendektan&#39;: 2065,
+ &#39;outsourcing&#39;: 1983,
+ &#39;dinas&#39;: 605,
+ &#39;tanah&#39;: 2822,
+ &#39;rusunawa&#39;: 2435,
+ &#39;romokalisari&#39;: 2413,
+ &#39;unsur&#39;: 3068,
+ &#39;asas&#39;: 172,
+ &#39;lex&#39;: 1540,
+ &#39;superior&#39;: 2778,
+ &#39;derogat&#39;: 558,
+ &#39;legi&#39;: 1518,
+ &#39;inferior&#39;: 1070,
+ &#39;kuat&#39;: 1441,
+ &#39;maksud&#39;: 1634,
+ ...}
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="document-frequency">
+<h1>Document Frequency<a class="headerlink" href="#document-frequency" title="Permalink to this headline">#</a></h1>
+<p>Apa itu <em>Document Frequency</em>? sekilas ini mirip seperti TF namun yang membedakan adalah ketika TF hanya menghitung banyak <em>term</em> dalam sebuah dokumen, DF hanya menghitung berapa banyak dokumen yang mengandung sebuah <em>term</em></p>
+<p>Formula:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>df(t) = occurence of t in documents
+
+where:
+    t: term
+</pre></div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="inverse-document-frequency">
+<h1>Inverse Document Frequency<a class="headerlink" href="#inverse-document-frequency" title="Permalink to this headline">#</a></h1>
+<p>Apa itu <em>Invers Document Frequency</em>?</p>
+<p>Ketika menghitung TF, seluruh <em>term</em> akan dianggap sama-sama pentingnya. Meskipun begitu kata-kata seperti ‘adalah’, ‘dari’, ‘itu’ bisa jadi muncul beberapa kali namun tidak memiliki makna. Ditambah kita juga perlu memberikan bobot yang kecil pada <em>term</em> dengan frekuensi yang besar dan memberikan bobot yang besar pada <em>term</em> yang jarang muncul, dengan menghitung sebuah IDF kita bisa melakukan pembobotan ini</p>
+<p>Formula:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>idf(t) = N/df
+
+where:
+    t: term
+    N: number of document
+    df: Document Frequency
+</pre></div>
+</div>
+<p>sekarang problemnya adalah ketika kita mempunyai <em>corpus</em> yang besar (anggap 1.000.000.000), maka IDF pastinya akan lebih besar juga, untuk mengantisipasinya kita bisa menggunakan log dari sebuah idf</p>
+<p>ketika proses perhitungannya, ketika sebuah DF bernilai 0 maka perhitungan tidak bisa dilakukan, untuk mengantisipasinya kita bisa menambahkan 1 pada DF</p>
+<p>Final Formula:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>idf(t) = log(N/(DF+1))
+
+where:
+    t: term
+    N: number of document
+    DF: Document Frequency
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">idf_res</span> <span class="o">=</span> <span class="n">idf</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">docs</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">])</span>
+<span class="n">idf</span><span class="o">.</span><span class="n">idf_</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([5.40671925, 5.40671925, 3.32727771, ..., 5.40671925, 5.40671925,
+       5.40671925])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="term-frequency-invers-document-frequency">
+<h1>Term Frequency Invers Document Frequency<a class="headerlink" href="#term-frequency-invers-document-frequency" title="Permalink to this headline">#</a></h1>
+<p>Formula:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>tf-idf(t,d) = tf(t,d) * log(N/(DF+1))
+
+where:
+    t: term
+    d: document
+    N: number of document
+    DF: Document Frequency
+</pre></div>
+</div>
+<p>Formula secara matematis:</p>
+<div class="math notranslate nohighlight">
+\[
+W_{i,j} = \frac{n_{i,j}}{\sum_{j=1}^{p} n_{j,i}} \log _{2} \frac{D}{d_{j}}
+\]</div>
+<p>keterangan:</p>
+<p><span class="math notranslate nohighlight">\({W_{i,j}}\quad\quad\&gt; :\)</span> pembobotan tf-idf untuk term ke-j pada dokumen ke-i</p>
+<p><span class="math notranslate nohighlight">\({n_{i,j}}\quad\quad\&gt;\&gt; :\)</span> jumlah kemunculan term ke-j pada dokumen ke-i</p>
+<p><span class="math notranslate nohighlight">\({p} \quad\quad\quad\&gt;\&gt; :\)</span> banyaknya term yang terbentuk</p>
+<p><span class="math notranslate nohighlight">\({\sum_{j=1}^{p} n_{j,i}} :\)</span> jumlah kemunculan seluruh term pada dokumen ke-i</p>
+<p><span class="math notranslate nohighlight">\({d_{j}} \quad\quad\quad :\)</span> banyaknya dokumen yang mengandung term ke-j</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tfidf_res</span> <span class="o">=</span> <span class="n">tfidf</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">docs</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tfidf_res</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  (0, 1449)	0.015370514606224428
+  (0, 3013)	0.014602829037019295
+  (0, 121)	0.019396162333877795
+  (0, 521)	0.0232836746579466
+  (0, 1561)	0.034539785687289735
+  (0, 2911)	0.052448045385409044
+  (0, 2846)	0.052448045385409044
+  (0, 2804)	0.052448045385409044
+  (0, 2099)	0.04342480267635009
+  (0, 216)	0.0339968961953064
+  (0, 809)	0.039333118984148235
+  (0, 359)	0.041191934356065905
+  (0, 2586)	0.02863547061569527
+  (0, 222)	0.052448045385409044
+  (0, 2640)	0.03298465072953136
+  (0, 3091)	0.04996512098303071
+  (0, 1799)	0.052448045385409044
+  (0, 1647)	0.03702271008966808
+  (0, 3028)	0.041191934356065905
+  (0, 2520)	0.04996512098303071
+  (0, 2951)	0.027999467380609124
+  (0, 1787)	0.04996512098303071
+  (0, 559)	0.0307958499019654
+  (0, 938)	0.044735377737538565
+  (0, 1780)	0.055649091678750054
+  :	:
+  (162, 2614)	0.05039759783263446
+  (162, 2901)	0.048056088463964926
+  (162, 1439)	0.04420431606554756
+  (162, 978)	0.09469223488239202
+  (162, 2096)	0.06064910719197336
+  (162, 1909)	0.032850872008899405
+  (162, 2462)	0.09202873976971826
+  (162, 108)	0.0778239465704056
+  (162, 1778)	0.18194732157592008
+  (162, 2867)	0.06514619199255778
+  (162, 1620)	0.1246637913030553
+  (162, 3043)	0.18137683020620463
+  (162, 2071)	0.10203889172343251
+  (162, 523)	0.02264366702788242
+  (162, 1764)	0.04618720866930673
+  (162, 1610)	0.07545668328353518
+  (162, 3013)	0.02096087856832813
+  (162, 121)	0.02784122188524771
+  (162, 2586)	0.04110331092700608
+  (162, 2747)	0.03698533706400983
+  (162, 960)	0.018844798679636388
+  (162, 189)	0.05039759783263446
+  (162, 2872)	0.08540305339745528
+  (162, 2430)	0.059126839863920005
+  (162, 1678)	0.03559561587544235
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="latent-semantic-analysis-lsa">
+<h1>Latent Semantic Analysis (LSA)<a class="headerlink" href="#latent-semantic-analysis-lsa" title="Permalink to this headline">#</a></h1>
+<p>Cosine similarity merupakan metode untuk menghitung nilai kosinus sudut antara vektor dokumen dengan vektor query. Semakin kecil sudut yang dihasilkan, maka tingkat kemiripan esai semakin tinggi.</p>
+<p>Formula:</p>
+<div class="math notranslate nohighlight">
+\[
+\cos \alpha=\frac{\boldsymbol{A} \cdot \boldsymbol{B}}{|\boldsymbol{A}||\boldsymbol{B}|}=\frac{\sum_{i=1}^{n} \boldsymbol{A}{i} X \boldsymbol{B}{i}}{\sqrt{\sum_{i=1}^{n}\left(\boldsymbol{A}{i}\right)^{2}} X \sqrt{\sum{i=1}^{n}\left(\boldsymbol{B}_{i}\right)^{2}}}
+\]</div>
+<p>Keterangan:</p>
+<p><span class="math notranslate nohighlight">\({A}\&gt; \quad\quad :\)</span> vektor dokumen</p>
+<p><span class="math notranslate nohighlight">\({B}\&gt;\quad\quad :\)</span> vektor query</p>
+<p><span class="math notranslate nohighlight">\({\boldsymbol{A} \cdot \boldsymbol{B}}\&gt; :\)</span> perkalian dot vektor$</p>
+<p><span class="math notranslate nohighlight">\({|\boldsymbol{A}|}\&gt;\quad :\)</span> panjang vektor A</p>
+<p><span class="math notranslate nohighlight">\({|\boldsymbol{B}|}\&gt;\quad :\)</span> panjang vektor B$</p>
+<p><span class="math notranslate nohighlight">\({|\boldsymbol{A}||\boldsymbol{B}|} :\)</span> Perkalian panjang vektor$</p>
+<p><span class="math notranslate nohighlight">\(
+\alpha\&gt; \quad\quad :\)</span> sudut yang terbentuk antara vektor A dengan vektor B</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lsa_model</span> <span class="o">=</span> <span class="n">TruncatedSVD</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">algorithm</span><span class="o">=</span><span class="s1">&#39;randomized&#39;</span><span class="p">,</span> <span class="n">n_iter</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">lsa</span><span class="o">=</span><span class="n">lsa_model</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">tfidf_res</span><span class="p">)</span>
+<span class="n">lsa</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 2.09215248e-01, -1.75863547e-01, -4.86428961e-01, ...,
+         6.60757849e-03, -7.70788342e-02, -6.02521196e-03],
+       [ 1.78889933e-01, -7.76807110e-02, -1.43775182e-01, ...,
+        -5.04509243e-02,  2.88707491e-01, -3.70327488e-02],
+       [ 3.10140228e-01, -2.35939426e-01,  5.60596214e-01, ...,
+         2.35984529e-02,  1.89761294e-01,  9.64628607e-02],
+       ...,
+       [ 1.70229462e-01, -4.59632310e-02, -8.95941252e-02, ...,
+         4.41983764e-02, -2.51284933e-04, -9.33293585e-03],
+       [ 2.08606937e-01, -5.42626854e-02, -5.58057956e-02, ...,
+        -1.77772465e-03, -4.48061162e-03,  3.25683685e-02],
+       [ 3.48966366e-01, -1.34400973e-01, -1.14584413e-01, ...,
+        -2.26175972e-02,  1.64773288e-02,  1.33358044e-02]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lsa</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(163, 10)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lsa_doc</span><span class="o">=</span><span class="n">lsa</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">t</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">lsa_doc</span><span class="p">):</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Topic &quot;</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="s2">&quot; : &quot;</span><span class="p">,</span><span class="n">t</span><span class="o">*</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Topic  0  :  20.92152480961092
+Topic  1  :  -17.586354653598455
+Topic  2  :  -48.64289610377172
+Topic  3  :  53.59537383387638
+Topic  4  :  4.503967070128225
+Topic  5  :  12.686528651481405
+Topic  6  :  -4.910570513032841
+Topic  7  :  0.660757849175592
+Topic  8  :  -7.707883420137349
+Topic  9  :  -0.6025211956564784
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lsa_model</span><span class="o">.</span><span class="n">components_</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 8.69836768e-04,  8.48930771e-04,  1.73181631e-02, ...,
+         6.05202386e-03,  1.91033363e-03,  8.70402719e-04],
+       [-1.74422970e-04, -4.27312186e-04, -6.78157367e-03, ...,
+        -5.30722752e-03, -1.12099868e-03, -6.73410279e-04],
+       [-1.21660676e-04, -1.09188059e-04, -1.35368717e-02, ...,
+         9.16707574e-03,  1.15690151e-05,  7.21401881e-04],
+       ...,
+       [ 7.35077835e-04, -7.61358774e-04, -8.33337159e-04, ...,
+        -2.48009960e-02, -6.26609185e-04, -3.89935271e-03],
+       [-2.04363289e-04, -1.55084016e-04, -2.25201575e-04, ...,
+        -1.37718496e-03, -1.97893949e-03, -1.91040585e-04],
+       [ 2.85684330e-04,  1.83988597e-03, -3.59290785e-04, ...,
+        -4.72124457e-02,  1.15756011e-03,  2.88849762e-04]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lsa_model</span><span class="o">.</span><span class="n">components_</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(10, 3206)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vocab</span> <span class="o">=</span> <span class="n">tfidf</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">comp</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">lsa_model</span><span class="o">.</span><span class="n">components_</span><span class="p">):</span>
+    <span class="n">vocab_comp</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="n">vocab</span><span class="p">,</span> <span class="n">comp</span><span class="p">)</span>
+    <span class="n">sorted_words</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">vocab_comp</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)[:</span><span class="mi">10</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Topic &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;: &quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">sorted_words</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">end</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Topic 0: 
+teliti kerja siswa halal ajar uji pengaruh data produk mampu 
+
+Topic 1: 
+siswa ajar mampu kritis pikir kelas perangkat guru media persentase 
+
+Topic 2: 
+kerja prestasi pegawai garam motivasi karyawan pengaruh efficacy puas uji 
+
+Topic 3: 
+undang kerja korupsi pidana hukum berantas sanksi komisi pasal ayat 
+
+Topic 4: 
+halal produk kerja sertifikasi ikm literasi lifestyle siswa mui hukum 
+
+Topic 5: 
+garam air sp rebon udang bakteri tanam kapal mg stasiun 
+
+Topic 6: 
+wisata khas pariwisata pulau giligenting minum kerja makan masyarakat kembang 
+
+Topic 7: 
+tanam mangkas pupuk bobot pucuk kandang sapi pakan hst daun 
+
+Topic 8: 
+mahasiswa berita papua wacana kritis kerja wisata minum fairclough rusuh 
+
+Topic 9: 
+rebon udang kapal mg stasiun air acetes sp sampel kg 
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.8/dist-packages/sklearn/utils/deprecation.py:87: FutureWarning: Function get_feature_names is deprecated; get_feature_names is deprecated in 1.0 and will be removed in 1.2. Please use get_feature_names_out instead.
+  warnings.warn(msg, category=FutureWarning)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="kmeans.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Data Crawling</p>
+        </div>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By The Jupyter Book Community<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
